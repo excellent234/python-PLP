@@ -1,1 +1,63 @@
+def calculate_discount(price, discount_percent):
+    """
+    Calculates the final price after applying a discount.
+
+    Args:
+        price (float): The original price of the item.
+        discount_percent (float): The discount percentage (e.g., 20 for 20%).
+
+    Returns:
+        float: The final price after applying the discount, or the original
+               price if the discount is less than 20%.
+    """
+    # Check if the discount is 20% or higher
+    if discount_percent >= 20:
+        # Calculate the discount amount
+        discount_amount = price * (discount_percent / 100)
+        # Calculate the final price
+        final_price = price - discount_amount
+        return final_price
+    else:
+        # If the discount is too low, return the original price
+        return price
+
+# --- Main part of the program ---
+if __name__ == "__main__":
+    print("Welcome to the Discount Calculator! 💰")
+
+    # Prompt the user for the original price
+    while True:
+        try:
+            original_price_str = input("Enter the original price of the item: ")
+            original_price = float(original_price_str)
+            if original_price < 0:
+                print("Price cannot be negative. Please try again.")
+            else:
+                break
+        except ValueError:
+            print("Invalid input. Please enter a valid number for the price.")
+
+    # Prompt the user for the discount percentage
+    while True:
+        try:
+            discount_percent_str = input("Enter the discount percentage (e.g., 15 for 15%): ")
+            discount_percent = float(discount_percent_str)
+            if not (0 <= discount_percent <= 100):
+                print("Discount percentage must be between 0 and 100. Please try again.")
+            else:
+                break
+        except ValueError:
+            print("Invalid input. Please enter a valid number for the discount percentage.")
+
+    # Calculate the final price using the function
+    final_price = calculate_discount(original_price, discount_percent)
+
+    # Print the result
+    if final_price == original_price:
+        print(f"\nNo discount applied. The original price was: ${original_price:.2f}")
+    else:
+        print(f"\nAfter a {discount_percent:.0f}% discount, the final price is: ${final_price:.2f}")
+
+    print("\nThanks for using the Discount Calculator! ✨")
+
 
